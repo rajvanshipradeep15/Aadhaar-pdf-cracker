@@ -24,6 +24,7 @@ def find(code):
             print "Password: {password}".format(password=password)
             os._exit(1)
     print "Thread completed"
+    return
 
 pins = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`] * 4
 
