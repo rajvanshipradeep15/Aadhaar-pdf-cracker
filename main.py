@@ -7,16 +7,16 @@ Steps:
 """
 
 from PyPDF2 import PdfFileReader
-from itertools import permutations
+from itertools import product
 from threading import Thread, active_count
 import os
 import time
 
 
 def find(code):
-    perms = ("".join(i) for i in permutations(pins, 4))
+    perms = ("".join(i) for i in product(pins, repeat=4))
     passwords = (`code` + extra for extra in perms)
-    passwords = sorted(set(passwords))
+    passwords = sorted(passwords)
 
     f = PdfFileReader(file(location, "rb"))
     for password in passwords:
@@ -26,8 +26,7 @@ def find(code):
     print "Thread completed"
     return
 
-pins = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`] * 4
-
+pins = [str(i) for i in range(10)]
 
 def main(areacode):
     print areacode
